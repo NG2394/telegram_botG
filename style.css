@@ -17,8 +17,8 @@ body, html {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 колонки */
-  gap: 15px;
-  max-width: 1200px; /* Максимальная ширина */
+  gap: 7px;
+  max-width: 1500px; /* Максимальная ширина */
   width: 100%;
   padding: 15px;
 }
