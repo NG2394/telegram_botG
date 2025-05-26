@@ -1,101 +1,43 @@
 body {
+  background: #0f0f0f;
   margin: 0;
-  background: #121212;
-  font-family: Arial, sans-serif;
-  color: #eee;
+  font-family: sans-serif;
+}
+
+.grid {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  min-height: 100vh;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
 }
 
-#cart-bar {
-  width: 100%;
-  max-width: 360px;
-  background: #222;
-  padding: 10px;
-  font-size: 16px;
-  text-align: center;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  user-select: none;
-  transition: opacity 0.3s ease;
-}
-
-.hidden {
-  opacity: 0;
-  pointer-events: none;
-  height: 0;
-  margin: 0;
-  padding: 0;
-}
-
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  max-width: 360px;
-  width: 100%;
-}
-
-.product-card {
+.item {
   position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  border: 3px solid transparent;
-  transition: border-color 0.3s ease;
-  filter: drop-shadow(0 0 4px rgba(0,0,0,0.7));
-}
-
-/* Эффект "растрескавшегося" стекла с помощью overlay и фильтра */
-.product-card img {
-  display: block;
-  width: 100%;
-  border-radius: 20px;
-  filter: grayscale(0.2) contrast(1.1);
-  transition: filter 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-
-/* Overlay трещин */
-.product-card::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: 20px;
-  pointer-events: none;
-  background: url('images/cracks_overlay.png') center/cover no-repeat;
-  opacity: 0.12;
-  z-index: 2;
-  transition: opacity 0.3s ease;
-}
-
-/* Подсветка выбранной иконки */
-.product-card.selected {
-  border-color: #4a90e2; /* мягкий синий */
-}
-
-.product-card.selected img {
-  filter: grayscale(0) contrast(1.2) brightness(1.05);
-}
-
-.product-card.selected::after {
-  opacity: 0.25;
-}
-
-/* Чтобы иконки не двигались, фиксируем размер */
-.product-card {
-  height: 120px;
   width: 120px;
+  height: 120px;
+  cursor: pointer;
 }
 
-/* Адаптив для мобильных */
-@media(max-width: 400px) {
-  .products-grid {
-    max-width: 100%;
-    grid-template-columns: repeat(3, 1fr);
-  }
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.sci-fi-frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  stroke: rgba(0, 255, 255, 0.3);
+  stroke-width: 4;
+  fill: none;
+  pointer-events: none;
+  transition: stroke 0.3s, filter 0.3s;
+}
+
+.item.selected .sci-fi-frame {
+  stroke: #00ffff;
+  filter: drop-shadow(0 0 6px #0ff);
 }
