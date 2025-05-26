@@ -1,50 +1,80 @@
-/* Сброс и базовые настройки */
-* {
-  box-sizing: border-box;
-}
-
 body, html {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Запрет горизонтальной прокрутки */
-  background-color: #111;
+  overflow-x: hidden;
+  background: #111;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
 }
 
-/* Контейнер для сетки */
+/* Эффект удара */
+#entry-animation {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0px;
+  height: 0px;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 80%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  animation: pulseWave 0.8s ease-out;
+}
+
+@keyframes pulseWave {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 1000px;
+    height: 1000px;
+    opacity: 0;
+  }
+}
+
+/* Сетка */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  width: 120vw; /* 90% от ширины окна */
-  max-width: 1500px;
-  padding: 10px;
+  gap: 10px;
+  max-width: 960px;
+  width: 100%;
+  padding: 20px;
 }
 
-/* Каждый товар */
+/* Иконка */
 .item {
-  aspect-ratio: 1 / 1;
   border: 4px solid transparent;
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, transform 0.4s ease;
+  aspect-ratio: 1 / 1;
 }
 
-
-
-/* Изображение товара */
 .item img {
   width: 100%;
   display: block;
-  border-radius: 16px;
   user-select: none;
   pointer-events: none;
+  border-radius: 16px;
 }
 
-/* Подсветка выбранного товара */
+/* Подсветка */
 .item.selected {
-  border-color: #007BFF; /* Синий контур */
+  border-color: #007BFF;
+}
+
+/* Волна */
+.item.animate {
+  animation: jump 0.5s ease forwards;
+}
+
+@keyframes jump {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+  100% { transform: translateY(0); }
 }
