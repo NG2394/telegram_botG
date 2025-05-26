@@ -1,59 +1,40 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Магазин газировки</title>
-<style>
-  body {
-    margin: 0;
-    overflow-x: hidden;
-    font-family: Arial, sans-serif;
-  }
-  .container {
-    display: flex;
-    justify-content: space-between;
-    width: 100vw;
-    padding: 0 10px;
-    box-sizing: border-box;
-    background-color: #f0f0f0;
-    margin-top: 20px;
-  }
-  .item {
-    flex: 0 0 30%;
-    max-width: 120px;
-    aspect-ratio: 1 / 1;
-    border-radius: 15px;
-    cursor: pointer;
-    border: 3px solid transparent; /* Изначально прозрачная рамка */
-    box-sizing: border-box;
-    background-size: cover;
-    background-position: center;
-    transition: border-color 0.3s;
-  }
-  .item.selected {
-    border-color: #007bff; /* Ярко-синий цвет */
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Магазин Газировки</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <div class="item" style="background-image: url('https://th.bing.com/th/id/OIP.4D3Gg6e85sgTTPZBCD15nAHaJQ?cb=iwc2&rs=1&pid=ImgDetMain');"></div>
-    <div class="item" style="background-image: url('https://th.bing.com/th/id/OIP.i63QTdIbXuzeXZbmNuJG2QAAAA?cb=iwc2&rs=1&pid=ImgDetMain');"></div>
-    <div class="item" style="background-image: url('https://www.globalalco.ru/i/PepsiCo-Inc/Mountain-Dew-Pitch-Black-USA-in-can-0-355-l--14304/23448_source_trim.png');"></div>
+  <div class="cart" id="cart">🛒 Корзина пуста</div>
+
+  <div class="product-row">
+    <div class="product-card" onclick="selectProduct(this, 'Маунтин Дью', 74)">
+      <img src="images/drink1.png" alt="Маунтин Дью" />
+      <div class="info">
+        <p>Маунтин Дью</p>
+        <span>0.3 л · 74₽</span>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="selectProduct(this, 'Пепси', 65)">
+      <img src="images/drink2.png" alt="Пепси" />
+      <div class="info">
+        <p>Пепси</p>
+        <span>0.33 л · 65₽</span>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="selectProduct(this, 'Кока-Кола', 69)">
+      <img src="images/drink3.png" alt="Кока-Кола" />
+      <div class="info">
+        <p>Кока-Кола</p>
+        <span>0.33 л · 69₽</span>
+      </div>
+    </div>
   </div>
 
-<script>
-  const items = document.querySelectorAll('.item');
-
-  items.forEach(item => {
-    item.addEventListener('click', () => {
-      // Снимаем класс 'selected' со всех элементов
-      items.forEach(i => i.classList.remove('selected'));
-      // Добавляем 'selected' только на тот, который кликнули
-      item.classList.add('selected');
-    });
-  });
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
