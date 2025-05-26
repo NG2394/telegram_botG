@@ -18,13 +18,14 @@ body, html {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 колонки */
   gap: 15px;
-  max-width: 960px; /* Максимальная ширина */
+  max-width: 1200px; /* Максимальная ширина */
   width: 100%;
-  padding: 20px;
+  padding: 15px;
 }
 
 /* Каждый товар */
 .item {
+  height:180px; 
   border: 4px solid transparent;
   border-radius: 20px;
   overflow: hidden;
