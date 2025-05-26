@@ -2,22 +2,124 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <title>Магазин газировки</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Магазин Газировки</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 400px; margin: 20px auto; }
-    .product { border: 1px solid #ccc; border-radius: 10px; padding: 10px; margin-bottom: 15px; text-align: center; }
-    img { max-width: 100px; }
-    button { padding: 10px 20px; margin-top: 10px; border-radius: 10px; cursor: pointer; }
+    body {
+      font-family: sans-serif;
+      margin: 0; padding: 0; background: #f2f2f2;
+    }
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #fff;
+      padding: 10px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      z-index: 10;
+      display: none; /* скрыта пока корзина пуста */
+    }
+    .header.visible {
+      display: flex;
+    }
+    .cart-info {
+      cursor: pointer;
+      background: #00aa44;
+      color: white;
+      border-radius: 20px;
+      padding: 5px 15px;
+      user-select: none;
+    }
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 80px 20px 20px; /* отступ сверху под фикс хедер */
+      flex-wrap: wrap;
+    }
+    .product-card {
+      width: 150px;
+      background: white;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+    .product-card.selected {
+      background-color: #a4dba4;
+      box-shadow: 0 0 12px 2px #00aa44;
+    }
+    .product-card img {
+      width: 100%;
+      border-radius: 15px;
+    }
+    .product-price {
+      margin-top: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      color: #333;
+    }
   </style>
 </head>
 <body>
-  <h2>Выберите напиток</h2>
 
-  <div class="product">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Mountain_Dew_Logo.svg/1200px-Mountain_Dew_Logo.svg.png" alt="Mountain Dew" />
-    <div>Mountain Dew 0.3 л</div>
-    <div>Цена: 74₽</div>
-    <button onclick="alert('Добавлено в корзину')">Добавить в корзину</button>
+  <div class="header" id="cartBar">
+    В корзине: <span id="cartCount">0</span> шт.
+    <div class="cart-info" onclick="openCart()">Открыть корзину</div>
   </div>
+
+  <div class="products" id="productsList">
+    <div class="product-card" data-id="1" data-name="Mountain Dew" data-price="74" onclick="toggleSelect(this)">
+      <img src="https://i.imgur.com/RLixR5i.png" alt="Mountain Dew" />
+      <div class="product-price">0.3 л — 74 ₽</div>
+    </div>
+    <div class="product-card" data-id="2" data-name="Coca-Cola" data-price="65" onclick="toggleSelect(this)">
+      <img src="https://i.imgur.com/ZI3R3OJ.png" alt="Coca-Cola" />
+      <div class="product-price">0.5 л — 65 ₽</div>
+    </div>
+    <div class="product-card" data-id="3" data-name="Fanta" data-price="60" onclick="toggleSelect(this)">
+      <img src="https://i.imgur.com/8Rfb7nt.png" alt="Fanta" />
+      <div class="product-price">0.5 л — 60 ₽</div>
+    </div>
+  </div>
+
+<script>
+  const cartBar = document.getElementById('cartBar');
+  const cartCount = document.getElementById('cartCount');
+  const selectedProducts = new Set();
+
+  function toggleSelect(card) {
+    const id = card.getAttribute('data-id');
+    if (selectedProducts.has(id)) {
+      selectedProducts.delete(id);
+      card.classList.remove('selected');
+    } else {
+      selectedProducts.add(id);
+      card.classList.add('selected');
+    }
+    updateCartBar();
+  }
+
+  function updateCartBar() {
+    if (selectedProducts.size > 0) {
+      cartBar.classList.add('visible');
+      cartCount.textContent = selectedProducts.size;
+    } else {
+      cartBar.classList.remove('visible');
+    }
+  }
+
+  function openCart() {
+    alert('Здесь будет корзина с товарами, этажом и комнатой.');
+  }
+</script>
+
 </body>
 </html>
