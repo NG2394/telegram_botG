@@ -6,65 +6,54 @@
 <title>Магазин газировки</title>
 <style>
   body {
+    margin: 0;
+    overflow-x: hidden;
     font-family: Arial, sans-serif;
-    margin: 20px;
   }
   .container {
-    display: flex; /* делаем контейнер строкой */
-    gap: 15px;
-    overflow-x: auto; /* чтобы была прокрутка по горизонтали, если не помещается */
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    padding: 0 10px;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    margin-top: 20px;
   }
   .item {
-    flex: 0 0 auto; /* чтобы элементы не сжимались */
-    width: 120px;
-    height: 120px;
+    flex: 0 0 30%;
+    max-width: 120px;
+    aspect-ratio: 1 / 1;
     border-radius: 15px;
     cursor: pointer;
-    border: 3px solid transparent;
+    border: 3px solid transparent; /* Изначально прозрачная рамка */
     box-sizing: border-box;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    transition: border-color 0.3s;
   }
   .item.selected {
-    border-color: #4CAF50;
-    box-shadow: 0 0 10px #4CAF50;
-  }
-  /* Чтобы убрать скроллбар на мобильных, можно чуть подправить */
-  .container::-webkit-scrollbar {
-    display: none;
+    border-color: #007bff; /* Ярко-синий цвет */
   }
 </style>
 </head>
 <body>
-
-<h2>Выбери напиток</h2>
-<div class="container" id="products">
-  <div class="item" onclick="toggleSelect(this)">
-    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/9efec254432087.595b71a5cbe06.png" alt="Mountain Dew 0.3л — 74₽" title="Mountain Dew 0.3л — 74₽" />
+  <div class="container">
+    <div class="item" style="background-image: url('https://th.bing.com/th/id/OIP.4D3Gg6e85sgTTPZBCD15nAHaJQ?cb=iwc2&rs=1&pid=ImgDetMain');"></div>
+    <div class="item" style="background-image: url('https://th.bing.com/th/id/OIP.i63QTdIbXuzeXZbmNuJG2QAAAA?cb=iwc2&rs=1&pid=ImgDetMain');"></div>
+    <div class="item" style="background-image: url('https://www.globalalco.ru/i/PepsiCo-Inc/Mountain-Dew-Pitch-Black-USA-in-can-0-355-l--14304/23448_source_trim.png');"></div>
   </div>
-  <div class="item" onclick="toggleSelect(this)">
-    <img src="https://i.imgur.com/FqyH8SJ.png" alt="Кока-Кола 0.5л — 90₽" title="Кока-Кола 0.5л — 90₽" />
-  </div>
-  <div class="item" onclick="toggleSelect(this)">
-    <img src="https://i.imgur.com/ULcWtVL.png" alt="Спрайт 0.3л — 70₽" title="Спрайт 0.3л — 70₽" />
-  </div>
-</div>
 
 <script>
-  function toggleSelect(el) {
-    // Убираем выделение у всех
-    document.querySelectorAll('.item').forEach(item => item.classList.remove('selected'));
-    // Добавляем выделение к выбранному
-    el.classList.add('selected');
-    // Здесь можно вызвать функцию добавления в корзину и т.д.
-    console.log('Выбран товар:', el.querySelector('img').alt);
-  }
-</script>
+  const items = document.querySelectorAll('.item');
 
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      // Снимаем класс 'selected' со всех элементов
+      items.forEach(i => i.classList.remove('selected'));
+      // Добавляем 'selected' только на тот, который кликнули
+      item.classList.add('selected');
+    });
+  });
+</script>
 </body>
 </html>
