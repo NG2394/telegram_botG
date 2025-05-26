@@ -1,95 +1,91 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Магазин газировки</title>
-  <style>
-    body {
-      margin: 0;
-      background: #121212;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden; /* Запретить горизонтальную прокрутку */
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      padding: 20px;
-      max-width: 100vw;
-      overflow-y: auto; /* Вертикальная прокрутка если много товаров */
-      height: 100vh; /* Чтобы было прокручивание страницы */
-      box-sizing: border-box;
-    }
-
-    .item {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      cursor: pointer;
-      border: 3px solid transparent;
-      transition: border-color 0.3s ease;
-    }
-
-    .item img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    /* Подсветка рамки при выборе */
-    .item.selected {
-      border-color: #3a86ff; /* синий цвет рамки */
-      box-shadow: 0 0 10px #3a86ff;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Магазин газировки</title>
+<style>
+  body {
+    margin: 0;
+    background: #111;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .container {
+    display: flex;
+    gap: 20px;
+    /* фиксируем ширину контейнера, чтобы не было прокрутки влево/вправо */
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  .product {
+    width: 140px;   /* увеличили размер */
+    height: 180px;  /* увеличили высоту, чтоб вместить цену */
+    border-radius: 20px;
+    overflow: hidden;
+    background: #222;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 3px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  .product img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+    user-select: none;
+  }
+  .price {
+    color: white;
+    margin-top: 8px;
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .product.selected {
+    border-color: #007bff; /* синяя рамка */
+    background: #0d1b33;   /* чуть подсвеченный фон */
+  }
+</style>
 </head>
 <body>
-  <div class="container" id="productContainer">
-    <!-- Товары добавятся здесь через JS -->
-  </div>
+<div class="container" id="container">
+  <!-- Товары появятся здесь через JS -->
+</div>
 
-  <script>
-    const productCount = 12; // Количество товаров
-    const container = document.getElementById('productContainer');
+<script>
+  const container = document.getElementById('container');
 
-    // Путь к картинке товара
-    const productImage = 'file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png'; // Положи свою картинку в папку images и укажи здесь имя файла
+  // Массив товаров: картинка + цена
+  const products = [
+    {img: 'images/product.png', price: '74₽', id: 1},
+    {img: 'images/product.png', price: '74₽', id: 2},
+    {img: 'images/product.png', price: '74₽', id: 3},
+  ];
 
-    // Массив для хранения выбранных товаров
-    const selectedItems = new Set();
+  // Создаем карточки товаров
+  products.forEach(product => {
+    const div = document.createElement('div');
+    div.classList.add('product');
+    div.dataset.id = product.id;
 
-    for(let i = 1; i <= productCount; i++) {
-      const div = document.createElement('div');
-      div.className = 'item';
-      div.dataset.id = i;
+    div.innerHTML = `
+      <img src="${product.img}" alt="Продукт ${product.id}" />
+      <div class="price">${product.price}</div>
+    `;
 
-      const img = document.createElement('img');
-      img.src = productImage;
-      img.alt = `Газировка ${i}`;
+    // Обработчик клика - переключаем класс selected
+    div.addEventListener('click', () => {
+      div.classList.toggle('selected');
+    });
 
-      div.appendChild(img);
-
-      // Клик по товару - переключение выделения
-      div.addEventListener('click', () => {
-        if(selectedItems.has(i)) {
-          selectedItems.delete(i);
-          div.classList.remove('selected');
-        } else {
-          selectedItems.add(i);
-          div.classList.add('selected');
-        }
-        // Здесь можно добавить обновление корзины или другие действия
-        console.log('Выбраны товары:', Array.from(selectedItems));
-      });
-
-      container.appendChild(div);
-    }
-  </script>
+    container.appendChild(div);
+  });
+</script>
 </body>
 </html>
-
