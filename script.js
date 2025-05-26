@@ -1,29 +1,22 @@
-const products = document.querySelectorAll('.product-card');
-const cartBar = document.getElementById('cart-bar');
-const cartCount = document.getElementById('cart-count');
+window.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll(".item");
 
-let cart = new Set();
+  // Волна — задержка от центра
+  items.forEach((item, i) => {
+    setTimeout(() => {
+      item.classList.add("animate");
+    }, i * 100);
+  });
 
-products.forEach(card => {
-  card.addEventListener('click', () => {
-    const id = card.dataset.id;
-    if (cart.has(id)) {
-      cart.delete(id);
-      card.classList.remove('selected');
-    } else {
-      cart.add(id);
-      card.classList.add('selected');
-    }
-    updateCart();
+  // Снять класс после анимации
+  setTimeout(() => {
+    items.forEach(item => item.classList.remove("animate"));
+  }, 2000);
+
+  // Клик по иконке
+  items.forEach(item => {
+    item.addEventListener("click", () => {
+      item.classList.toggle("selected");
+    });
   });
 });
-
-function updateCart() {
-  const count = cart.size;
-  if (count > 0) {
-    cartBar.classList.remove('hidden');
-    cartCount.textContent = count;
-  } else {
-    cartBar.classList.add('hidden');
-  }
-}
