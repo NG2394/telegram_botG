@@ -1,30 +1,86 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Товары</title>
+  <title>Магазин</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <div class="grid">
-    <div class="item" onclick="toggleSelect(this)">
-      <svg class="sci-fi-frame" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <polyline points="0,20 0,0 20,0" />
-        <polyline points="80,0 100,0 100,20" />
-        <polyline points="100,80 100,100 80,100" />
-        <polyline points="20,100 0,100 0,80" />
-      </svg>
-      <img src="images/product1.png" alt="Товар">
+  <div class="container">
+    <!-- 12 иконок (3 x 4) -->
+    <div class="grid">
+      <!-- Пример одного товара с узорной рамкой -->
+      <!-- Копируй и меняй имя файла изображения -->
+      <!-- Изображения должны быть в папке /images -->
+      <!-- Повтори блоки 12 раз, меняя src и alt -->
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item1.png" alt="Товар 1">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item2.png" alt="Товар 2">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item3.png" alt="Товар 3">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item4.png" alt="Товар 4">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item5.png" alt="Товар 5">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item6.png" alt="Товар 6">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item7.png" alt="Товар 7">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item8.png" alt="Товар 8">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item9.png" alt="Товар 9">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item10.png" alt="Товар 10">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item11.png" alt="Товар 11">
+        </div>
+      </div>
+      <div class="item" onclick="toggleSelection(this)">
+        <div class="decorative-frame">
+          <img src="images/item12.png" alt="Товар 12">
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
-    function toggleSelect(el) {
-      el.classList.toggle("selected");
+    function toggleSelection(item) {
+      item.classList.toggle('selected');
     }
   </script>
-
 </body>
 </html>
