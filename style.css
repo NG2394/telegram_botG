@@ -17,10 +17,10 @@ body, html {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 колонки */
-  gap: 3px;
-  max-width: 2500px; /* Максимальная ширина */
+  gap: 0px;
+  max-width: 25000000px; /* Максимальная ширина */
   width: 100%;
-  padding: 15px;
+  padding: 10px;
 }
 
 /* Каждый товар */
