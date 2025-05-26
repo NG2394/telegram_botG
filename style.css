@@ -72,7 +72,6 @@ body, html {
 .item.animate {
   animation: jump 0.5s ease forwards;
 }
-
 @keyframes jump {
   0% { transform: translateY(0); }
   50% { transform: translateY(-40px); }
