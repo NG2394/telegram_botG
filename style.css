@@ -18,8 +18,8 @@ body, html {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
-  width: 90vw; /* 90% от ширины окна */
-  max-width: 1200px;
+  width: 120vw; /* 90% от ширины окна */
+  max-width: 1500px;
   padding: 10px;
 }
 
