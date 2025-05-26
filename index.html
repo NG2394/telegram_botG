@@ -5,78 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Магазин газировки</title>
   <style>
-    /* Сброс стилей и запрет горизонтальной прокрутки */
     body {
       margin: 0;
-      overflow-x: hidden;
+      background: #121212;
       font-family: Arial, sans-serif;
-      background: #f0f0f0;
+      overflow-x: hidden; /* Запретить горизонтальную прокрутку */
     }
 
-    /* Сетка из 3 колонок */
-    .grid {
+    .container {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      width: 100vw;
+      gap: 15px;
+      padding: 20px;
       max-width: 100vw;
-      padding: 12px;
+      overflow-y: auto; /* Вертикальная прокрутка если много товаров */
+      height: 100vh; /* Чтобы было прокручивание страницы */
       box-sizing: border-box;
     }
 
-    /* Каждый товар - квадрат с закругленными углами */
     .item {
+      position: relative;
       border-radius: 20px;
       overflow: hidden;
       cursor: pointer;
-      border: 2px solid transparent;
-      transition: border-color 0.3s;
-      background: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border: 3px solid transparent;
+      transition: border-color 0.3s ease;
     }
 
-    /* Подсветка при выборе */
-    .item.selected {
-      border-color: #007bff; /* синий цвет */
-    }
-
-    /* Изображение занимает весь квадрат */
     .item img {
+      display: block;
       width: 100%;
       height: auto;
-      display: block;
       border-radius: 20px;
       user-select: none;
       pointer-events: none;
     }
+
+    /* Подсветка рамки при выборе */
+    .item.selected {
+      border-color: #3a86ff; /* синий цвет рамки */
+      box-shadow: 0 0 10px #3a86ff;
+    }
   </style>
 </head>
 <body>
-  <div class="grid" id="productGrid">
-    <!-- 12 одинаковых товаров, можно менять src и alt -->
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    <div class="item"><img src="file:///C:/Users/furia/OneDrive/%D0%A0%D0%B0%D0%B1%D0%BE%D1%87%D0%B8%D0%B9%20%D1%81%D1%82%D0%BE%D0%BB/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-05-26%20064554.png" alt="Газировка" /></div>
-    
+  <div class="container" id="productContainer">
+    <!-- Товары добавятся здесь через JS -->
   </div>
 
   <script>
-    // Логика выбора товара - кликаем на квадрат, рамка подсвечивается
-    const items = document.querySelectorAll('.item');
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        item.classList.toggle('selected');
+    const productCount = 12; // Количество товаров
+    const container = document.getElementById('productContainer');
+
+    // Путь к картинке товара
+    const productImage = 'images/product.png'; // Положи свою картинку в папку images и укажи здесь имя файла
+
+    // Массив для хранения выбранных товаров
+    const selectedItems = new Set();
+
+    for(let i = 1; i <= productCount; i++) {
+      const div = document.createElement('div');
+      div.className = 'item';
+      div.dataset.id = i;
+
+      const img = document.createElement('img');
+      img.src = productImage;
+      img.alt = `Газировка ${i}`;
+
+      div.appendChild(img);
+
+      // Клик по товару - переключение выделения
+      div.addEventListener('click', () => {
+        if(selectedItems.has(i)) {
+          selectedItems.delete(i);
+          div.classList.remove('selected');
+        } else {
+          selectedItems.add(i);
+          div.classList.add('selected');
+        }
+        // Здесь можно добавить обновление корзины или другие действия
+        console.log('Выбраны товары:', Array.from(selectedItems));
       });
-    });
+
+      container.appendChild(div);
+    }
   </script>
 </body>
 </html>
+
