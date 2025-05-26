@@ -23,6 +23,14 @@
     <div class="item"><img src="images/mountain_dew.png" alt="Товар 12" /></div>
   </div>
 
-
+  <script>
+    // Скрипт для подсветки выбранных иконок
+    const items = document.querySelectorAll('.item');
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('selected');
+      });
+    });
+  </script>
 </body>
 </html>
