@@ -1,71 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Магазин с анимированным фоном</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drink Shop</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-  <!-- Видео-фон -->
-  <video autoplay muted loop id="background-video">
-    <source src="videos/ocean_loop.mp4" type="video/mp4" />
-    Ваш браузер не поддерживает видео.
-  </video>
+    <video autoplay muted loop id="bg-video">
+        <source src="videos/ocean.mp4" type="video/mp4">
+    </video>
 
-  <!-- Контент -->
-  <div class="grid-container">
-    <!-- 12 товаров -->
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 1" />
-      <div class="crack-overlay"></div>
+    <div class="grid-container">
+        <!-- Повторите 12 раз для сетки 3x4 -->
+        <div class="product-card" data-id="1">
+            <img src="images/product1.png" class="product-image">
+            <div class="crack-overlay"></div>
+        </div>
     </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 2" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 3" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 4" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 5" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 6" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 7" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 8" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 9" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 10" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 11" />
-      <div class="crack-overlay"></div>
-    </div>
-    <div class="item" tabindex="0">
-      <img src="images/product1.png" alt="Товар 12" />
-      <div class="crack-overlay"></div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
