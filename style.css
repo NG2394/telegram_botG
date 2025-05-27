@@ -1,81 +1,67 @@
+/* Обнуление и базовый стиль */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body, html {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
   height: 100%;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(to bottom, #003366, #66ccff);
-  animation: oceanMove 20s infinite alternate;
-  display: flex;
-  justify-content: center;
+  overflow-x: hidden;
+  font-family: sans-serif;
 }
 
-@keyframes oceanMove {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 0 100%;
-  }
+/* Фоновое видео */
+#bg-video {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
 }
 
-/* Контейнер с сеткой */
+/* Сетка товаров */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  max-width: 960px;
-  width: 100%;
   padding: 20px;
-  margin-top: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-/* Товар */
+/* Один товар */
 .item {
+  position: relative;
   aspect-ratio: 1 / 1;
-  border: 3px solid transparent;
+  border: 3px solid rgba(255, 255, 255, 0.3);
   border-radius: 20px;
   overflow: hidden;
+  backdrop-filter: blur(4px);
+  transition: 0.3s ease;
   cursor: pointer;
-  transition: border-color 0.3s ease;
-  opacity: 0;
-  transform: translateY(50px);
-  animation: floatUp 1s ease forwards;
 }
 
-.item:nth-child(1) { animation-delay: 0s; }
-.item:nth-child(2) { animation-delay: 0.1s; }
-.item:nth-child(3) { animation-delay: 0.2s; }
-.item:nth-child(4) { animation-delay: 0.3s; }
-.item:nth-child(5) { animation-delay: 0.4s; }
-.item:nth-child(6) { animation-delay: 0.5s; }
-.item:nth-child(7) { animation-delay: 0.6s; }
-.item:nth-child(8) { animation-delay: 0.7s; }
-.item:nth-child(9) { animation-delay: 0.8s; }
-.item:nth-child(10) { animation-delay: 0.9s; }
-.item:nth-child(11) { animation-delay: 1.0s; }
-.item:nth-child(12) { animation-delay: 1.1s; }
-
-@keyframes floatUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Изображение товара */
 .item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  user-select: none;
+  object-fit: contain;
   pointer-events: none;
-  border-radius: 16px;
+  user-select: none;
 }
 
+/* Эффект выбора (трещины с зелёным свечением) */
 .item.selected {
-  border-color: #00ffff;
+  box-shadow: 0 0 20px 5px #00ff00;
+  border-color: #00ff00;
+  animation: crack 0.3s ease;
+}
+
+/* Эффект трещин */
+@keyframes crack {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05) rotate(1deg); }
+  100% { transform: scale(1); }
 }
