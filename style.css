@@ -1,84 +1,37 @@
-/* Общие стили */
-* {
-  box-sizing: border-box;
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow-x: hidden;
-  font-family: Arial, sans-serif;
-  background: #111;
-  position: relative;
-}
-
-/* Видео фон занимает весь экран, позади контента */
-#background-video {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  filter: brightness(0.7);
-}
-
-/* Сетка товаров 3 на 4 */
 .grid-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  gap: 12px;
-  max-width: 960px;
-  margin: 40px auto;
-  padding: 0 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
 }
 
-/* Каждый товар квадрат с закругленными углами */
-.item {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  border-radius: 25px;
-  cursor: pointer;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 12px rgba(0,0,0,0.3);
-  transition: box-shadow 0.3s ease;
-  border: 3px solid transparent;
+.product-card {
+    position: relative;
+    height: 150px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-/* Изображение занимает весь квадрат */
-.item img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none;
-  user-select: none;
-  border-radius: 20px;
-}
-
-/* Подсветка рамки при выборе */
-.item.selected {
-  border-color: #00ff00; /* зеленая подсветка */
-  box-shadow: 0 0 25px #00ff00;
-}
-
-/* Трещины поверх изображения, изначально скрыты */
 .crack-overlay {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: url('images/crack.png') center center no-repeat;
-  background-size: contain;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  mix-blend-mode: screen; /* Чтобы трещины были ярче на фоне */
-  filter: drop-shadow(0 0 3px #0f0);
-  border-radius: 25px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('images/crack.jpg') center/cover;
+    opacity: 0;
+    transition: opacity 0.5s;
 }
-/* Показываем трещины при активном элементе */
-.item.cracked .crack-overlay {
-  opacity: 1;
+
+.product-card.active .crack-overlay {
+    opacity: 0.8;
+    animation: crack 1s ease-out;
+}
+
+@keyframes crack {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
 }
