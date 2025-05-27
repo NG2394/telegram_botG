@@ -78,7 +78,6 @@ body, html {
   filter: drop-shadow(0 0 3px #0f0);
   border-radius: 25px;
 }
-
 /* Показываем трещины при активном элементе */
 .item.cracked .crack-overlay {
   opacity: 1;
