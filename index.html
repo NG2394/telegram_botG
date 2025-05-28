@@ -2,39 +2,59 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Магазин</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Анимированный фон</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3); /* затемнение при необходимости */
+    }
+
+    .content {
+      position: relative;
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      top: 40%;
+      font-family: sans-serif;
+    }
+  </style>
 </head>
 <body>
-  <video autoplay muted loop id="background-video">
-  <source src="images/ocean_background.mp4" type="video/mp4">
-  Твой браузер не поддерживает видео.
-</video>
 
-  <div class="grid-container">
-    <!-- 12 иконок -->
-    <div class="item"><img src="images/item1.png" alt="Item 1"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 2"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 3"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 4"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 5"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 6"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 7"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 8"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 9"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 10"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 11"></div>
-    <div class="item"><img src="images/item1.png" alt="Item 12"></div>
+  <video autoplay muted loop class="video-bg">
+    <source src="videos/background.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+    Добро пожаловать
   </div>
 
-  <script>
-    const items = document.querySelectorAll('.item');
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        item.classList.toggle('selected');
-      });
-    });
-  </script>
 </body>
 </html>
