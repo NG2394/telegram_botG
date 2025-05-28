@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Анимированный фон</title>
+  <title>Добро пожаловать</title>
   <style>
+    /* Сброс отступов и установка размеров */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Установка размеров для body и html */
     body, html {
       width: 100%;
       height: 100%;
       overflow: hidden;
+      font-family: Arial, sans-serif;
     }
 
+    /* Стили для видеофона */
     .video-bg {
       position: fixed;
       top: 0;
@@ -26,32 +30,28 @@
       z-index: -1;
     }
 
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.3); /* затемнение при необходимости */
-    }
-
+    /* Стили для текста по центру */
     .content {
-      position: relative;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       color: white;
-      font-size: 2rem;
+      font-size: 3rem;
       text-align: center;
-      top: 40%;
-      font-family: sans-serif;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     }
   </style>
 </head>
 <body>
 
-  <video autoplay muted loop class="video-bg">
+  <!-- Видео фон -->
+  <video autoplay muted loop playsinline class="video-bg">
     <source src="videos/background.mp4" type="video/mp4">
     Ваш браузер не поддерживает видео.
   </video>
 
-  <div class="overlay"></div>
-
+  <!-- Текст по центру -->
   <div class="content">
     Добро пожаловать
   </div>
